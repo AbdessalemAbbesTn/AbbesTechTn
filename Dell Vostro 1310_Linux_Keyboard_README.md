@@ -53,6 +53,7 @@ Modify the GRUB bootloader parameters:
 **Maintained by:** AbbesTechTn  
 **Expertise:** Computer Software Maintenance Specialist  
 **Project:** Legacy Hardware Resurrection (2026)
-md
+
+README.md
 
 
