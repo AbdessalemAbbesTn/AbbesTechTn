@@ -1,6 +1,5 @@
 # AbbesTechTn: Specialized solutions between Linux and older computers
-# AbbesTechTn:
-حلول متخصصة بين نظام لينكس وأجهزة الكمبيوتر القديمة
+# AbbesTechTn: حلول متخصصة بين نظام لينكس وأجهزة الكمبيوتر القديمة
 
 ---
 
