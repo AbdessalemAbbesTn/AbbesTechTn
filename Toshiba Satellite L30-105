@@ -1,0 +1,213 @@
+Below is the English version of your comprehensive maintenance report, professionally translated and formatted for your documentation.
+
+ Technical Maintenance Report (Q4OS System / TDE Interface)
+
+Prepared by: Technical Support Unit - AbbesTechTn
+Contact: abbes.tech.tn@gmail.com
+Target Device: Toshiba Satellite L30-105 (RAM 2GB / 32-bit)
+ 1. Summary of Technical Obstacles
+The device faced a series of software-related challenges that hindered the benefits of the mechanical repairs performed on the optical disc drive:
+ Network Obstacle: Inability to access official repositories (Debian Repos).
+ Graphics Obstacle: Video player crashes (Segmentation Fault).
+ Encryption Obstacle: Refusal to read protected discs and region code mismatch (Region Code).
+ Input Obstacle: Scattered keyboard layout and absence of an on-screen keyboard.
+2. Practical Procedures & Terminal Commands
+Phase I: Fixing Repository Connection (Fix APT Repos)
+ Problem: System failure to resolve download links due to IPv6 conflicts.
+ Procedure: Forcing the system to use the stable IPv4 protocol.
+ Commands:
+
+```
+Create a configuration file to force IPv4
+
+echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4
+
+ Update the repository list to ensure successful connection
+
+sudo apt update
+
+```
+Phase II: Installing Graphic Drivers
+ Problem: Missing firmware files for the integrated
+ ATI Radeon card, causing system freezes during movie playback.
+ Procedure: Installing "Non-free" packages to support hardware acceleration.
+ Commands:
+
+```
+ Install essential drivers and graphics acceleration libraries
+
+sudo apt install firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
+
+```
+Phase III: Media & Disc Drive Activation (DVD & Decryption)
+ Problem: Original discs are encrypted and fail to run due to disc drive region mismatch.
+ Procedure: Setting the drive region to (Region 2 - Tunisia/Europe) and installing decryption libraries.
+ Commands:
+
+```
+1. Set the drive region (Select "2" when prompted)
+
+sudo apt install regionset && sudo regionset /dev/sr0
+
+ 2. Install the library for decrypting protected movies
+
+sudo apt install libdvd-pkg && sudo dpkg-reconfigure libdvd-pkg
+
+```
+Phase IV: Configuring Input Tools (Keyboard & On-Screen)
+ Problem: Mismatch between physical keys and typed characters; need for a virtual keyboard.
+ Procedure: Adding 
+AZERTY/AR layouts and installing the Onboard software.
+ Commands:
+
+```
+ 1. Install the On-Screen Keyboard
+
+sudo apt install onboard
+
+ 2. Quick command to set French layout (AZERTY) immediately
+
+setxkbmap fr
+
+3. Command to merge Arabic and French with Alt+Shift toggle
+
+setxkbmap -layout "fr,ar" -option "grp:alt_shift_toggle"
+
+```
+3. Technical Recommendations for Stable Operation (Best Practices)
+Given the limited hardware specifications (2GB RAM), the following protocol must be followed to ensure smooth performance:
+ 1. Certified Player: Use
+ SMPlayer instead of VLC; it consumes fewer resources and interacts directly with the path /dev/sr0.
+ 2. Memory Management: 
+Close the web browser completely when playing movies to free up RAM for the processor.
+ 3. Automatic Startup: Add the Onboard program to the 
+Autostart list in the
+ TDE Control Center to ensure it appears upon login.
+ Final Device Status
+> "The device is now in full operational status. The mechanical drive is supported by decrypted software, graphics drivers are stable, and the input interface is configured for professional use."
+> 
+Signature:
+Technical Support Unit - AbbesTechTn
+Empowering Legacy Hardware
+
+
+ تقرير الصيانة الفنية (نظام Q4OS / واجهة TDE)
+إعداد الفني : AbbesTechTn
+abbes.tech.tn@gmail.com
+الجهاز المستهدف :
+Toshiba Satellite L30-105
+ (RAM 2GB / 32-bit)
+1. ملخص العقبات التقنية
+واجه الجهاز سلسلة من التحديات البرمجية التي منعت الإستفادة من الإصلاحات الميكانيكية لقارئ الأقراص :
+ عقبة الشبكة : تعذر الوصول للمستودعات الرسمية (Debian Repos)
+ عقبة الرسوميات : إنهيار مشغلات الفيديو (Segmentation Fault)
+ عقبة التشفير : رفض قراءة الأقراص المحمية و إختلاف المناطق 
+(Region Code)
+ عقبة الإدخال : لوحة مفاتيح مبعثرة و غياب لوحة مفاتيح الشاشة
+ 2. الإجراءات التطبيقية و الأوامر البرمجية
+المرحلة الأولى : إصلاح الإتصال بالمستودعات
+ (Fix APT Repos)
+المشكلة : فشل النظام في ترجمة روابط التحميل بسبب تعارض
+ IPv6.
+الإجراء : إجبار النظام على إستخدام البروتوكول المستقر
+ IPv4.
+الأوامر :
+```
+ إنشاء ملف تهيئة لفرض 
+IPv4
+
+echo 'Acquire::ForceIPv4 "true";' | sudo tee /etc/apt/apt.conf.d/99force-ipv4
+
+ تحديث قائمة المستودعات للتأكد من نجاح الإتصال
+
+sudo apt update
+
+```
+المرحلة الثانية : تثبيت تعريفات الفيديو
+ (Graphic Drivers)
+المشكلة : فقدان ملفات الـ
+ Firmware 
+لكرت
+ ATI Radeon 
+المدمج مما يسبب تجمد النظام عند تشغيل الأفلام.
+الإجراء : تثبيت الحزم "غير الحرة"
+ (Non-free) 
+لدعم تسريع العتاد.
+الأوامر :
+```
+ تثبيت التعريفات الأساسية و مكتبات تسريع الجرافيك
+
+sudo apt install firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
+
+```
+المرحلة الثالثة : تفعيل الوسائط و قارئ الأقراص (DVD & Decryption)
+المشكلة : الأقراص الأصلية مشفرة و لا تعمل بسبب إختلاف منطقة القارئ
+ (Region).
+الإجراء : ضبط منطقة القارئ على
+ (المنطقة 2 - تونس/أوروبا)
+ و تثبيت مكتبات فك التشفير.
+الأوامر :
+```
+ 1. ضبط منطقة القارئ (إختر الرقم 2 عند السؤال)
+
+sudo apt install regionset
+&&
+sudo regionset /dev/sr0
+
+ 2. تثبيت مكتبة فك تشفير الأفلام المحمية
+
+sudo apt install libdvd-pkg
+&&
+sudo dpkg-reconfigure libdvd-pkg
+
+```
+المرحلة الرابعة : ضبط أدوات الإدخال
+ (Keyboard & On-Screen)
+المشكلة : عدم تطابق الحروف المكتوبة مع الأزرار ، و الحاجة للوحة مفاتيح إفتراضية.
+الإجراء : إضافة تخطيط
+ AZERTY/AR 
+و تثبيت برنامج
+ Onboard.
+الأوامر :
+```
+ 1. تثبيت لوحة مفاتيح الشاشة
+
+sudo apt install onboard
+
+ 2. أمر سريع لضبط اللغة الفرنسية
+ (AZERTY) 
+فورياً
+
+setxkbmap fr
+
+ 3. أمر دمج العربية و الفرنسية مع التبديل بـ Alt+Shift
+
+setxkbmap -layout "fr,ar" -option "grp:alt_shift_toggle"
+
+```
+3. التوصيات الفنية للتشغيل المستقر
+ (Best Practices)
+بما أن مواصفات الجهاز محدودة
+ (2GB RAM)
+
+ يجب إتباع البروتوكول التالي لضمان سلاسة الأداء :
+ 1. المشغل المعتمد : إستخدم
+ SMPlayer
+بدلاً من 
+VLC
+ لأنه يستهلك موارد أقل و يتعامل مباشرة مع المسار
+
+ /dev/sr0.
+
+ 2. إدارة الذاكرة : أغلق متصفح الإنترنت تماماً عند تشغيل الأفلام لتوفير الرام للمعالج.
+ 3. بدء التشغيل التلقائي : أضف برنامج
+ onboard 
+إلى قائمة
+  Autostart 
+في مركز تحكم 
+TDE
+ ليظهر بمجرد فتح الجهاز.
+
+التوقيع :
+ وحدة الدعم الفني
+ - AbbesTechTn
