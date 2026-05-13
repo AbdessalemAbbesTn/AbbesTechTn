@@ -22,6 +22,7 @@
 
 **Specialist:** AbbesTechTn  
 **Project:** Legacy Hardware Recovery & Linux Optimization
+abbes.tech.tn@gmail.com
 
 ---
 ## 📂 الفهرس الآلي للحلول (Auto-Generated Index)
